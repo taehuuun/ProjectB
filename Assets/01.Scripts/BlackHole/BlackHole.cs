@@ -9,10 +9,12 @@ public class BlackHole : MonoBehaviour
     {
         float distance = Vector2.Distance(this.transform.position, planet.transform.position);
 
+        Vector2 direction = (this.transform.position - planet.transform.position).normalized;
+        planet.Velocity += direction * (Mass / (distance * distance));
+        
         if (distance < EventHorizonRadius)
         {
-            Vector2 direction = (this.transform.position - planet.transform.position).normalized;
-            planet.Velocity += direction * (Mass / (distance * distance));
+            Debug.Log("흡수 됨");
         }
     }
 }
