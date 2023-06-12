@@ -24,6 +24,14 @@ public class PlanetPool : MonoBehaviour
         }
     }
 
+    public void AdjustPlanetProperties(int wave)
+    {
+        minMass += wave * 1f;
+        maxMass += wave * 1.5f;
+        minSpeed += wave * 0.5f;
+        maxSpeed += wave * 1f;
+    }
+
     public void Spawn()
     {
         foreach (var planet in PlanetPools)
