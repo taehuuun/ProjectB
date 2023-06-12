@@ -8,8 +8,10 @@ public class Planet : MonoBehaviour
 
     private BlackHole _blackHole;
 
-    public void SetBlackHole(BlackHole blackHole)
+    public void SetPlanet(BlackHole blackHole, float speed, float mass)
     {
+        Speed = speed;
+        Mass = mass;
         _blackHole = blackHole;
 
         Vector2 direction = (blackHole.transform.position - transform.position).normalized;
