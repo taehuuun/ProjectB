@@ -32,7 +32,7 @@ public class Planet : MonoBehaviour
         Speed = speed;
         Mass = mass;
         
-        Vector2 randomDirection = new Vector2(Random.Range(-2f,2f), Random.Range(-2f,2f));
+        Vector2 randomDirection = new Vector2(Random.Range(-1.5f,1.5f), Random.Range(-1.5f,1.5f));
 
         Velocity = randomDirection.normalized * Speed * 10;
     }
