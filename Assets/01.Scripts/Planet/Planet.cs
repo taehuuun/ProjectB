@@ -26,13 +26,13 @@ public class Planet : MonoBehaviour
         transform.position += (Vector3)Velocity * Time.deltaTime;
     }
 
-    public void SetPlanet(float mass, float speed)
+    public void SetPlanet(float x, float y, float mass, float speed)
     {
+        transform.position = new Vector2(x, y);
         Speed = speed;
         Mass = mass;
         
-        float direction = Random.Range(0f, 360f);
-        Vector2 randomDirection = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction));
+        Vector2 randomDirection = new Vector2(Random.Range(-1,1), Random.Range(-1,1));
 
         Velocity = randomDirection.normalized * Speed;
     }
