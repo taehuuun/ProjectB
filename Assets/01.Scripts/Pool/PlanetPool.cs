@@ -13,7 +13,7 @@ public class PlanetPool : MonoBehaviour
     public float maxSpeed;
     
     public List<Planet> PlanetPools { get; private set; }
-    private const int PoolSize = 50;
+    private const int PoolSize = 10;
 
     private void SetSpawnAbleAreas()
     {
@@ -43,6 +43,7 @@ public class PlanetPool : MonoBehaviour
         for (int i = 0; i < PoolSize; i++)
         {
             Planet planet = Instantiate(planetPrefab, parent, true);
+            planet.gameObject.SetActive(false);
             PlanetPools.Add(planet);
         }
     }

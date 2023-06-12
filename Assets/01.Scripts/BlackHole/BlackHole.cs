@@ -4,8 +4,8 @@ public class BlackHole : MonoBehaviour
 {
     [SerializeField] private float mass;
 
-    private const float GravityConst = 6.6743f;
-    private const float SpeedOfLight = 100;
+    private const float GravityConst = 1f;
+    private const float SpeedOfLight = 3f;
 
     private float EventHorizonRadius => (2 * GravityConst * mass / (SpeedOfLight * SpeedOfLight));
 
@@ -17,7 +17,7 @@ public class BlackHole : MonoBehaviour
     private void Update()
     {
         float scaledRadius = EventHorizonRadius;
-        transform.localScale = new Vector3(scaledRadius, scaledRadius, 1f);
+        transform.localScale = new Vector3(scaledRadius, scaledRadius, scaledRadius);
     }
     
     public void InteractPlanet(Planet planet)
@@ -26,12 +26,12 @@ public class BlackHole : MonoBehaviour
 
         Vector2 direction = (this.transform.position - planet.transform.position).normalized;
         
-        float force = (GravityConst * mass * planet.Mass) / (distance * distance);
+        float force = (GravityConst * mass * planet.Mass) /  (distance * distance);
         planet.Velocity += direction * force;
 
         if (distance < EventHorizonRadius)
         {
-            Destroy(this.gameObject);
+            planet.gameObject.SetActive(false);
             Debug.Log("흡수 됨");
         }
     }

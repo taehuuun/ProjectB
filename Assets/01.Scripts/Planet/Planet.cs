@@ -23,7 +23,7 @@ public class Planet : MonoBehaviour
     }
     private void Update()
     {
-        transform.position += (Vector3)Velocity * Time.deltaTime;
+        transform.position += (Vector3)Velocity * (Time.deltaTime * 0.01f);
     }
 
     public void SetPlanet(float x, float y, float mass, float speed)
@@ -32,8 +32,8 @@ public class Planet : MonoBehaviour
         Speed = speed;
         Mass = mass;
         
-        Vector2 randomDirection = new Vector2(Random.Range(-1,1), Random.Range(-1,1));
+        Vector2 randomDirection = new Vector2(Random.Range(-2f,2f), Random.Range(-2f,2f));
 
-        Velocity = randomDirection.normalized * Speed;
+        Velocity = randomDirection.normalized * Speed * 10;
     }
 }
