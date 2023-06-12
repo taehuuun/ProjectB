@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var planet in planets)
         {
-            planet.SetPlanet(blackHole, Random.Range(0,5),Random.Range(0,5));
+            planet.SetPlanet(blackHole);
         }
     }
     
@@ -19,7 +19,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (var planet in planets)
         {
-            blackHole.InteractPlanet(planet);
+            if(planet.gameObject.activeSelf)
+                blackHole.InteractPlanet(planet);
         }
     }
 }

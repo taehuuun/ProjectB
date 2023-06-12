@@ -8,14 +8,14 @@ public class Planet : MonoBehaviour
 
     private BlackHole _blackHole;
 
-    public void SetPlanet(BlackHole blackHole, float speed, float mass)
+    public void SetPlanet(BlackHole blackHole)
     {
-        Speed = speed;
-        Mass = mass;
         _blackHole = blackHole;
 
-        Vector2 direction = (blackHole.transform.position - transform.position).normalized;
-        Velocity = direction * Speed;
+        float direction = Random.Range(0f, 360f);
+        Vector2 randomDirection = new Vector2(Mathf.Cos(direction), Mathf.Sin(direction));
+
+        Velocity = randomDirection.normalized * Speed;
     }
 
     private void Update()
