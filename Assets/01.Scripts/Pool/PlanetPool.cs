@@ -20,7 +20,6 @@ public class PlanetPool : MonoBehaviour
         for (int i = 0; i < PoolSize; i++)
         {
             Planet planet = Instantiate(planetPrefab, parent, true);
-            planet.SetPlanet(Random.Range(minMass,maxMass),Random.Range(minSpeed,maxSpeed));
             PlanetPools.Add(planet);
         }
     }
@@ -31,6 +30,7 @@ public class PlanetPool : MonoBehaviour
         {
             if (!planet.gameObject.activeSelf)
             {
+                planet.SetPlanet(Random.Range(minMass,maxMass),Random.Range(minSpeed,maxSpeed));
                 planet.gameObject.SetActive(true);
                 break;
             }
