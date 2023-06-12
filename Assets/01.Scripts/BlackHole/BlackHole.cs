@@ -27,7 +27,7 @@ public class BlackHole : MonoBehaviour
         Vector2 direction = (this.transform.position - planet.transform.position).normalized;
         
         float force = (GravityConst * mass * planet.Mass) /  (distance * distance);
-        planet.Velocity += direction * force;
+        planet.Velocity += direction * (force * 0.5f);
 
         if (distance < EventHorizonRadius)
         {
