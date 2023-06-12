@@ -31,9 +31,25 @@ public class Planet : MonoBehaviour
         transform.position = new Vector2(x, y);
         Speed = speed;
         Mass = mass;
-        
-        Vector2 randomDirection = new Vector2(Random.Range(-1.5f,1.5f), Random.Range(-1.5f,1.5f));
 
-        Velocity = randomDirection.normalized * Speed * 10;
+        Vector2 rotatedDirection = CalculateRandomDirection();
+
+        Velocity = rotatedDirection * Speed * 10;
+    }
+
+    private Vector2 CalculateRandomDirection()
+    {
+        Vector2 centerVec = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.5f, Screen.height * 0.5f));
+        
+        Vector2 direction = centerVec - (Vector2)transform.position.normalized;
+        float randomAngle = Random.Range(-30f, 30f) * Mathf.Deg2Rad;
+
+        Vector2 rotatedDirection = new Vector2
+        (
+            direction.x * Mathf.Cos(randomAngle) - direction.y * Mathf.Sin(randomAngle),
+            direction.x * Mathf.Sin(randomAngle) + direction.y * Mathf.Cos(randomAngle)
+        );
+
+        return rotatedDirection;
     }
 }
