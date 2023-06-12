@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class BlackHole : MonoBehaviour
 {
+    [SerializeField] private Transform influenceRadius;
     [SerializeField] private float mass;
-
+    [SerializeField] private float influenceRadiusValue;
+    
     private const float GravityConst = 1f;
     private const float SpeedOfLight = 3f;
 
@@ -18,21 +20,25 @@ public class BlackHole : MonoBehaviour
     {
         float scaledRadius = EventHorizonRadius;
         transform.localScale = new Vector3(scaledRadius, scaledRadius, scaledRadius);
+        
+        influenceRadius.localScale = new Vector3(influenceRadiusValue, influenceRadiusValue, 1);
     }
     
     public void InteractPlanet(Planet planet)
     {
         float distance = Vector2.Distance(this.transform.position, planet.transform.position);
 
-        Vector2 direction = (this.transform.position - planet.transform.position).normalized;
-        
-        float force = (GravityConst * mass * planet.Mass) /  (distance * distance);
-        planet.Velocity += direction * (force * 0.5f);
-
-        if (distance < EventHorizonRadius)
+        if (distance < influenceRadiusValue * 0.7f)
         {
-            planet.gameObject.SetActive(false);
-            Debug.Log("흡수 됨");
+            Vector2 direction = (this.transform.position - planet.transform.position).normalized;
+            float force = (GravityConst * mass * planet.Mass) /  (distance * distance);
+            planet.Velocity += direction * (force * 0.5f);
+
+            if (distance < EventHorizonRadius)
+            {
+                planet.gameObject.SetActive(false);
+                Debug.Log("흡수 됨");
+            }
         }
     }
 }
