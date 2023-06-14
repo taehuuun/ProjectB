@@ -427,7 +427,7 @@ MonoBehaviour:
   blackHoleSprite: {fileID: 22836132}
   lineRenderer: {fileID: 1467562402}
   mass: 1
-  influenceRadiusValue: 0.3
+  influenceRadiusValue: 1
 --- !u!4 &1010003232
 Transform:
   m_ObjectHideFlags: 0

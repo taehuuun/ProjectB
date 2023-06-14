@@ -49,11 +49,12 @@ public class BlackHole : MonoBehaviour
         lineRenderer.endWidth = 0.01f;
 
         float angle = 0f;
+        float convertRadius = mass * radius * 0.3f;
         
         for (int i = 0; i <= segments; i++)
         {
-            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius; 
-            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * convertRadius; 
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * convertRadius;
 
             lineRenderer.SetPosition(i,  transform.position + new Vector3(x, y, 0));
         
