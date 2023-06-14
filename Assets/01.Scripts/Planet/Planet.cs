@@ -1,16 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
 
 public class Planet : MonoBehaviour
 {
     public static event Action OnPlanetEnabled;
     public static event Action OnPlanetDisabled;
+    public static event Action OnPlanetRespawn;
     
     public float Speed { get; private set; }
     public float Mass { get; private set; }
     public Vector2 Velocity { get;  set; }
 
+    public bool isOnScreen = false;
+    
     private void OnEnable()
     {
         OnPlanetEnabled?.Invoke();
@@ -22,6 +26,18 @@ public class Planet : MonoBehaviour
     private void Update()
     {
         transform.position += (Vector3)Velocity * (Time.deltaTime * 0.01f);
+
+        if (IsOffScreen())
+        {
+            if (isOnScreen)
+            {
+                OnPlanetRespawn?.Invoke();
+            }
+        }
+        else
+        {
+            isOnScreen = true;
+        }
     }
 
     public void SetPlanet(float x, float y, float mass, float speed)
@@ -29,6 +45,7 @@ public class Planet : MonoBehaviour
         transform.position = new Vector2(x, y);
         Speed = speed;
         Mass = mass;
+        isOnScreen = false;
 
         Vector2 rotatedDirection = CalculateRandomDirection();
 
@@ -49,5 +66,10 @@ public class Planet : MonoBehaviour
         );
 
         return rotatedDirection;
+    }
+    private bool IsOffScreen()
+    {
+        Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+        return screenPoint.x < 0 || screenPoint.x > 1 || screenPoint.y < 0 || screenPoint.y > 1;
     }
 }
