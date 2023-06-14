@@ -40,9 +40,9 @@ public class Planet : MonoBehaviour
         }
     }
 
-    public void SetPlanet(float x, float y, float mass, float speed)
+    public void SetPlanet(Vector2 spawnPosition, float mass, float speed)
     {
-        transform.position = new Vector2(x, y);
+        transform.position = spawnPosition;
         Speed = speed;
         Mass = mass;
         isOnScreen = false;
