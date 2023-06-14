@@ -15,11 +15,13 @@ public class GameManager : MonoBehaviour
     {
         Planet.OnPlanetEnabled += HandlePlanetEnabled;
         Planet.OnPlanetDisabled += HandlePlanetDisabled;
+        Planet.OnPlanetRespawn += HandlePlanetRespawn;
     }
     private void OnDisable()
     {
         Planet.OnPlanetEnabled -= HandlePlanetEnabled;
         Planet.OnPlanetDisabled -= HandlePlanetDisabled;
+        Planet.OnPlanetRespawn -= HandlePlanetRespawn;
     }
     private void Start()
     {
@@ -57,5 +59,9 @@ public class GameManager : MonoBehaviour
     private void HandlePlanetDisabled()
     {
         _activeCount--;
+    }
+    private void HandlePlanetRespawn(Planet planet)
+    {
+        planet.SetPlanet(planetPool.GetRandomSpawnPosition(), planet.Mass,planet.Speed);
     }
 }

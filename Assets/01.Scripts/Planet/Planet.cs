@@ -7,7 +7,7 @@ public class Planet : MonoBehaviour
 {
     public static event Action OnPlanetEnabled;
     public static event Action OnPlanetDisabled;
-    public static event Action OnPlanetRespawn;
+    public static event Action<Planet> OnPlanetRespawn;
     
     public float Speed { get; private set; }
     public float Mass { get; private set; }
@@ -31,7 +31,7 @@ public class Planet : MonoBehaviour
         {
             if (isOnScreen)
             {
-                OnPlanetRespawn?.Invoke();
+                OnPlanetRespawn?.Invoke(this);
             }
         }
         else
