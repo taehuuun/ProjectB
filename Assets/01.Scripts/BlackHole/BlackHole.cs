@@ -15,7 +15,8 @@ public class BlackHole : MonoBehaviour
 
     private void Update()
     {
-        DrawInfluenceRadius(influenceRadiusValue);
+        float convertRadius = influenceRadiusValue * 0.3f;
+        DrawInfluenceRadius(convertRadius);
         blackHoleSprite.localScale = new Vector3(EventHorizonRadius, EventHorizonRadius, 1);
     }
     
@@ -23,7 +24,7 @@ public class BlackHole : MonoBehaviour
     {
         float distance = Vector2.Distance(this.transform.position, planet.transform.position);
 
-        if (distance > influenceRadiusValue)
+        if (distance > influenceRadiusValue * 0.3f)
         {
             return;
         }
@@ -49,12 +50,11 @@ public class BlackHole : MonoBehaviour
         lineRenderer.endWidth = 0.01f;
 
         float angle = 0f;
-        float convertRadius = mass * radius * 0.3f;
         
         for (int i = 0; i <= segments; i++)
         {
-            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * convertRadius; 
-            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * convertRadius;
+            float x = Mathf.Sin(Mathf.Deg2Rad * angle) * radius; 
+            float y = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
 
             lineRenderer.SetPosition(i,  transform.position + new Vector3(x, y, 0));
         
