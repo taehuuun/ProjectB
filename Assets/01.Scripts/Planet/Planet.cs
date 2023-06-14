@@ -11,8 +11,6 @@ public class Planet : MonoBehaviour
     public float Mass { get; private set; }
     public Vector2 Velocity { get;  set; }
 
-    private BlackHole _blackHole;
-
     private void OnEnable()
     {
         OnPlanetEnabled?.Invoke();
