@@ -35,6 +35,20 @@ public class PlanetPool : MonoBehaviour
         spawnAbleAreas[3, 0] = new Vector2(screenLeftBottom.x - 1, screenLeftBottom.y - 1);
         spawnAbleAreas[3, 1] = new Vector2((screenLeftBottom.x * -1) + 1, screenLeftBottom.y);
     }
+
+    public Vector2 GetRandomSpawnPosition()
+    {
+        int randIdx = Random.Range(0, spawnAbleAreas.GetLength(0));
+        float minX = spawnAbleAreas[randIdx, 0].x;
+        float maxX = spawnAbleAreas[randIdx, 1].x;
+        float minY = spawnAbleAreas[randIdx, 0].y;
+        float maxY = spawnAbleAreas[randIdx, 1].y;
+
+        float randX = Random.Range(minX, maxX);
+        float randY = Random.Range(minY, maxY);
+
+        return new Vector2(randX, randY);
+    }
     public void SetPool()
     {
         SetSpawnAbleAreas();
@@ -60,19 +74,12 @@ public class PlanetPool : MonoBehaviour
         {
             if (!planet.gameObject.activeSelf)
             {
-                int spawnAreaIdx = Random.Range(0, 4);
+                Vector2 spawnPosition = GetRandomSpawnPosition();
                 
-                float spawnAreaMinX = spawnAbleAreas[spawnAreaIdx, 0].x;
-                float spawnAreaMaxX = spawnAbleAreas[spawnAreaIdx, 1].x;
-                float spawnAreaMinY = spawnAbleAreas[spawnAreaIdx, 0].y;
-                float spawnAreaMaxY = spawnAbleAreas[spawnAreaIdx, 1].y;
-
-                float randX = Random.Range(spawnAreaMinX, spawnAreaMaxX);
-                float randY = Random.Range(spawnAreaMinY, spawnAreaMaxY);
                 float mass = Random.Range(minMass, maxMass);
                 float speed = Random.Range(minSpeed, maxSpeed);
 
-                planet.SetPlanet(randX, randY, mass, speed);
+                planet.SetPlanet(spawnPosition, mass, speed);
                 planet.gameObject.SetActive(true);
                 break;
             }
