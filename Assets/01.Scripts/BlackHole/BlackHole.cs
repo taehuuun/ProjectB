@@ -1,21 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class BlackHole : MonoBehaviour
 {
     [SerializeField] private Transform blackHoleSprite;
     [SerializeField] private LineRenderer lineRenderer;
-    
+
     [SerializeField] private float mass;
     [SerializeField] private float influenceRadiusValue;
-    
+
     private const float GravityConst = 5f;
     private const float SpeedOfLight = 30f;
 
     private float EventHorizonRadius => (2 * GravityConst * mass / SpeedOfLight);
 
+    private void Start()
+    {
+        StartCoroutine(DecreaseMass());
+    }
+
     private void Update()
     {
-        float convertRadius = influenceRadiusValue * 0.3f;
+        float convertRadius = influenceRadiusValue * 0.3f * mass;
         DrawInfluenceRadius(convertRadius);
         blackHoleSprite.localScale = new Vector3(EventHorizonRadius, EventHorizonRadius, 1);
     }
@@ -36,6 +42,7 @@ public class BlackHole : MonoBehaviour
 
         if (distance < EventHorizonRadius)
         {
+            mass += planet.Mass *0.008f;
             planet.gameObject.SetActive(false);
             Debug.Log("흡수 됨");
         }
@@ -59,6 +66,15 @@ public class BlackHole : MonoBehaviour
             lineRenderer.SetPosition(i,  transform.position + new Vector3(x, y, 0));
         
             angle += 360f / segments;
+        }
+    }
+
+    private IEnumerator DecreaseMass()
+    {
+        while (!GameManager.IsGameOver)
+        {
+            mass -= 0.001f;
+            yield return new WaitForSeconds(1f);
         }
     }
 }

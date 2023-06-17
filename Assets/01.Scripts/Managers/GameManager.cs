@@ -4,6 +4,8 @@ public class GameManager : MonoBehaviour
 {
     public BlackHole blackHole;
     public PlanetPool planetPool;
+
+    public static bool IsGameOver = false;
     
     private int _activeCount;
     private int _currentWave;
