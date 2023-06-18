@@ -17,7 +17,7 @@ public static class GlobalSettings
     // Upgrade amounts
     public static float BlackHoleMassDecreaseAmount = 0.01f;
     public static float BlackHoleRadiusIncreaseAmount = 0.1f;
-    public static float PlanetMassAbsorptionIncreaseAmount = 0.1f;
+    public static float BlackHoleMassAbsorptionIncreaseAmount = 0.1f;
     public static float WaveDurationDecreaseAmount = 1.0f;
     public static float WaveWaitTimeIncreaseAmount = 1.0f;
 }
