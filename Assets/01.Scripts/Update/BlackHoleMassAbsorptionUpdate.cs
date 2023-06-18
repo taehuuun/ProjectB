@@ -5,7 +5,7 @@ public class BlackHoleMassAbsorptionUpdate : Upgrade
         base("블랙홀 질량 흡수량",
             GlobalSettings.InitialPlanetMassAbsorptionIncreaseCost,
             GlobalSettings.BlackHoleMassAbsorptionIncreaseCostMultiplier,
-            GlobalSettings.BlackHoleMassAbsorptionIncreaseCostMultiplier)
+            GlobalSettings.BlackHoleMassAbsorptionIncreaseAmount)
     {
         _blackHole = blackHole;
     }
