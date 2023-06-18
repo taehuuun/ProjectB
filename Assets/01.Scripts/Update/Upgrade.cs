@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Upgrade : MonoBehaviour
+public abstract class Upgrade : MonoBehaviour
 {
     public string name;
     public float cost;
@@ -8,18 +8,22 @@ public class Upgrade : MonoBehaviour
     public float amount;
     public int level;
 
-    public Upgrade(string name, float cost, float costMultiplier, float amount, int level)
+    protected Upgrade(string name, float cost, float costMultiplier, float amount)
     {
         this.name = name;
         this.cost = cost;
         this.costMultiplier = costMultiplier;
         this.amount = amount;
-        this.level = level;
     }
 
-    public void Apply()
+    public abstract void ApplyUpgrade();
+    public void PurchaseUpdate()
     {
-        cost *= costMultiplier;
-        level++;
+        if (GameManager.TmpMoney >= cost)
+        {
+            level++;
+            cost *= costMultiplier;
+            ApplyUpgrade();
+        }
     }
 }
