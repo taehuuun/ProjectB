@@ -10,7 +10,7 @@ public static class GlobalSettings
     // Cost multipliers
     public static float BlackHoleMassDecreaseCostMultiplier = 1.5f;
     public static float BlackHoleRadiusIncreaseCostMultiplier = 1.5f;
-    public static float PlanetMassAbsorptionIncreaseCostMultiplier = 1.5f;
+    public static float BlackHoleMassAbsorptionIncreaseCostMultiplier = 1.5f;
     public static float WaveDurationDecreaseCostMultiplier = 1.5f;
     public static float WaveWaitTimeIncreaseCostMultiplier = 1.5f;
 
