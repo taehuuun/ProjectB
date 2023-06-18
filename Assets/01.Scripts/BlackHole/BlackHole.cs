@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class BlackHole : MonoBehaviour
 {
+    public float MassDecreasePerSecond { get; set; }
+    
     [SerializeField] private Transform blackHoleSprite;
     [SerializeField] private LineRenderer lineRenderer;
 
