@@ -9,10 +9,11 @@ public class Planet : MonoBehaviour
     public static event Action OnPlanetDisabled;
     public static event Action<Planet> OnPlanetRespawn;
     
+    public Vector2 Velocity { get;  set; }
+    
     public float Speed { get; private set; }
     public float Mass { get; private set; }
-    public Vector2 Velocity { get;  set; }
-
+    
     public bool isOnScreen = false;
     
     private void OnEnable()
