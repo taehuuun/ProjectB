@@ -4,6 +4,7 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     public float MassDecreasePerSecond { get; set; }
+    public float MassAbsorption { get; set; }
     public float InfluenceRadiusValue { get; set; }
     
     [SerializeField] private Transform blackHoleSprite;
@@ -32,7 +33,7 @@ public class BlackHole : MonoBehaviour
     {
         float distance = Vector2.Distance(this.transform.position, planet.transform.position);
 
-        if (distance > InfluenceRadiusValue * 0.3f)
+        if (distance > InfluenceRadiusValue * MassAbsorption)
         {
             return;
         }
