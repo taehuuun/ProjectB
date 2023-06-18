@@ -4,12 +4,12 @@ using UnityEngine;
 public class BlackHole : MonoBehaviour
 {
     public float MassDecreasePerSecond { get; set; }
+    public float InfluenceRadiusValue { get; set; }
     
     [SerializeField] private Transform blackHoleSprite;
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private float mass;
-    [SerializeField] private float influenceRadiusValue;
 
     private const float GravityConst = 5f;
     private const float SpeedOfLight = 30f;
@@ -23,7 +23,7 @@ public class BlackHole : MonoBehaviour
 
     private void Update()
     {
-        float convertRadius = influenceRadiusValue * 0.3f * mass;
+        float convertRadius = InfluenceRadiusValue * 0.3f * mass;
         DrawInfluenceRadius(convertRadius);
         blackHoleSprite.localScale = new Vector3(EventHorizonRadius, EventHorizonRadius, 1);
     }
@@ -32,7 +32,7 @@ public class BlackHole : MonoBehaviour
     {
         float distance = Vector2.Distance(this.transform.position, planet.transform.position);
 
-        if (distance > influenceRadiusValue * 0.3f)
+        if (distance > InfluenceRadiusValue * 0.3f)
         {
             return;
         }
