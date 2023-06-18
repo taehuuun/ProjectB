@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
     public PlanetPool planetPool;
 
     public static bool IsGameOver = false;
+
+    public static int TmpMoney;
     
     private int _activeCount;
     private int _currentWave;
