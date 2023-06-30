@@ -10,7 +10,7 @@ public class BlackHoleRadiusIncreaseUpdate : Upgrade
         _blackHole = blackHole;
     }
 
-    public override void ApplyUpgrade()
+    protected override void ApplyUpgrade()
     {
         _blackHole.InfluenceRadiusValue += amount;
     }

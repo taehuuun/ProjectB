@@ -16,7 +16,7 @@ public abstract class Upgrade : MonoBehaviour
         this.amount = amount;
     }
 
-    public abstract void ApplyUpgrade();
+    protected abstract void ApplyUpgrade();
     public void PurchaseUpdate()
     {
         if (GameManager.TmpMoney >= cost)
