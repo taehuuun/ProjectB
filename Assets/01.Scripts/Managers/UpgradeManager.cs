@@ -4,20 +4,29 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     [SerializeField] private UpgradeButton upgradeButtonPrefab;
-    [SerializeField] private Transform blackHoleUpdateButtonParent;
+    [SerializeField] private Transform blackHoleUpgradeButtonParent;
     [SerializeField] private BlackHole blackHole;
 
-    [SerializeField] private List<Upgrade> blackHoleUpdateList = new List<Upgrade>();
+    private List<Upgrade> _blackHoleUpgradeList;
 
     private void Start()
     {
-        UpdateSetting();
+        _blackHoleUpgradeList = new List<Upgrade>()
+        {
+            new BlackHoleMassAbsorptionUpdate(blackHole),
+            new BlackHoleMassReductionUpdate(blackHole),
+            new BlackHoleRadiusIncreaseUpdate(blackHole)
+        };
+        
+        UpgradeSetting();
     }
 
-    private void UpdateSetting()
+    private void UpgradeSetting()
     {
-        foreach (var blackUpdate in blackHoleUpdateList)
+        foreach (var blackHoleUpgrade in _blackHoleUpgradeList)
         {
+            UpgradeButton upgradeButton = Instantiate(upgradeButtonPrefab, blackHoleUpgradeButtonParent);
+            upgradeButton.SetUpgrade(blackHoleUpgrade);
         }
     }
 }
