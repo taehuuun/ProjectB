@@ -1,28 +1,26 @@
-using UnityEngine;
-
-public abstract class Upgrade : MonoBehaviour
+public abstract class Upgrade
 {
-    public string name;
-    public float cost;
-    public float costMultiplier;
-    public float amount;
-    public int level;
+    public string Name;
+    public float Cost;
+    public float CostMultiplier;
+    public float Amount;
+    public int Level;
 
     protected Upgrade(string name, float cost, float costMultiplier, float amount)
     {
-        this.name = name;
-        this.cost = cost;
-        this.costMultiplier = costMultiplier;
-        this.amount = amount;
+        Name = name;
+        Cost = cost;
+        CostMultiplier = costMultiplier;
+        Amount = amount;
     }
 
     protected abstract void ApplyUpgrade();
     public void PurchaseUpdate()
     {
-        if (GameManager.TmpMoney >= cost)
+        if (GameManager.TmpMoney >= Cost)
         {
-            level++;
-            cost *= costMultiplier;
+            Level++;
+            Cost *= CostMultiplier;
             ApplyUpgrade();
         }
     }

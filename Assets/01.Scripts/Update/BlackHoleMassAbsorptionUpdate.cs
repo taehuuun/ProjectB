@@ -12,6 +12,6 @@ public class BlackHoleMassAbsorptionUpdate : Upgrade
 
     protected override void ApplyUpgrade()
     {
-        _blackHole.MassAbsorption += amount;
+        _blackHole.MassAbsorption += Amount;
     }
 }

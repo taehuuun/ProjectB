@@ -12,6 +12,6 @@ public class BlackHoleMassReductionUpdate : Upgrade
 
     protected override void ApplyUpgrade()
     {
-        _blackHole.MassDecreasePerSecond -= amount;
+        _blackHole.MassDecreasePerSecond -= Amount;
     }
 }
