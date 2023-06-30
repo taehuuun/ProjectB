@@ -12,6 +12,7 @@ public class UpgradeButton : MonoBehaviour
    public void SetUpgrade(Upgrade upgrade)
    {
       _linkedUpgrade = upgrade;
+      upgradeNameText.text = _linkedUpgrade.Name;
       UpdateUI();
    }
 
@@ -23,8 +24,7 @@ public class UpgradeButton : MonoBehaviour
 
    private void UpdateUI()
    {
-      upgradeNameText.text = levelText.name;
-      levelText.text = $"Lv.{_linkedUpgrade.level.ToString()}";
-      costText.text = $"$ {_linkedUpgrade.cost.ToString()}";
+      levelText.text = $"Lv.{_linkedUpgrade.Level.ToString()}";
+      costText.text = $"$ {_linkedUpgrade.Cost.ToString()}";
    }
 }
